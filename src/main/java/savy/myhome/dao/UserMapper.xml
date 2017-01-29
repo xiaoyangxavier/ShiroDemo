@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="savy.myhome.dao.UserMapper">
+
+	<resultMap type="savy.myhome.vo.User" id="BaseResultMap">
+		<result property="uid" column="uid"/>
+		<result property="username" column="username"/>
+		<result property="password" column="password	"/>
+		<result property="state" column="state"/>
+		<result property="lastlogindate" column="lastlogindate"/>
+		<result property="createdate" column="createdate"/>
+		<result property="role_id" column="role_id"/>
+	</resultMap>
+	
+	<select id="getByusername" parameterType="String" resultMap="BaseResultMap">
+		select * from user where username=#{username}
+	</select>
+	
+	<select id="getRoles" parameterType="String" resultType="String">
+		select r.sign from user u,role r where u.role_id=r.rid and u.username=#{username}
+	</select>	
+	
+	<select id="getPermissions" parameterType="String" resultType="String">
+		
+	select p.sign from user u 
+	LEFT JOIN role r on u.role_id=r.rid 
+	LEFT JOIN role_permission rp  on r.rid=rp.permission_id 
+	LEFT JOIN permission p  on p.pid=rp.permission_id 
+	WHERE u.username=#{username}
+	
+	</select>
+
+
+<select id="login" parameterType="String" resultMap="BaseResultMap">
+		select * from user where username=#{username} and password=#{password}
+	</select>	
+</mapper> 
