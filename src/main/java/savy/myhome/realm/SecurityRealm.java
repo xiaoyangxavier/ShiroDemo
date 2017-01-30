@@ -35,9 +35,7 @@ public class SecurityRealm extends AuthorizingRealm {
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
         String username = String.valueOf(principals.getPrimaryPrincipal());
-
-
-		 
+ 
 		authorizationInfo.setRoles(userService.getRoles(username));
 		authorizationInfo.setStringPermissions(userService.getPermissions(username));
         return authorizationInfo;

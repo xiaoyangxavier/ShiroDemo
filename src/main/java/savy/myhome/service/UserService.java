@@ -14,7 +14,7 @@ public interface UserService {
 	
 	/**
 	 * 通过用户名查询角色信息
-	 * @param userName
+	 * @param username
 	 * @return
 	 */
 	public Set<String> getRoles(String username);

@@ -13,8 +13,8 @@
 <shiro:hasRole name="admin">
 	欢迎有admin角色的用户！<shiro:principal/>
 </shiro:hasRole>
-<shiro:hasPermission name="student:create">
-	欢迎有student:create权限的用户！<shiro:principal/>
+<shiro:hasPermission name="user:create">
+	欢迎有user:create权限的用户！<shiro:principal/>
 </shiro:hasPermission>
 </body>
 </html>

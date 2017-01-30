@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="savy.myhome.dao.UserMapper">
+<mapper namespace="savy.myhome.dao.UserDao">
 
-	<resultMap type="savy.myhome.vo.User" id="BaseResultMap">
+	<resultMap type="savy.myhome.vo.User" id="UserResult">
 		<result property="uid" column="uid"/>
 		<result property="username" column="username"/>
 		<result property="password" column="password	"/>
@@ -14,7 +14,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="role_id" column="role_id"/>
 	</resultMap>
 	
-	<select id="getByusername" parameterType="String" resultMap="BaseResultMap">
+	<select id="getByusername" parameterType="String" resultMap="UserResult">
 		select * from user where username=#{username}
 	</select>
 	
@@ -33,7 +33,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 
-<select id="login" parameterType="String" resultMap="BaseResultMap">
+<select id="login" parameterType="String" resultMap="UserResult">
 		select * from user where username=#{username} and password=#{password}
 	</select>	
 </mapper> 

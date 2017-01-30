@@ -6,7 +6,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-import savy.myhome.dao.UserMapper;
+import savy.myhome.dao.UserDao;
 import savy.myhome.service.UserService;
 import savy.myhome.vo.User;
 
@@ -15,7 +15,7 @@ public class UserServiceImpl implements UserService {
 
 	  
 	@Resource
-	private UserMapper userDao;
+	private UserDao userDao;
 	
 	public User getByUsername(String username) {
 		return userDao.getByUsername(username);
@@ -26,7 +26,9 @@ public class UserServiceImpl implements UserService {
 	}
 
 	public Set<String> getPermissions(String username) {
-		return userDao.getPermissions(username);
+		Set<String> myPermission = userDao.getPermissions(username);
+		System.out.println("权限为："+myPermission.toString());
+		return myPermission;
 	}
 	
 	public User authentication(String username, String password){
