@@ -1,6 +1,7 @@
 package savy.myhome.controller;
 
 import java.security.MessageDigest;
+import java.util.Collection;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -31,7 +32,7 @@ public class UserController {
 	 * 用户注册，只能接收POST请求
 	 */
 	@RequestMapping(method=RequestMethod.POST,value="/login")
-	public String registerMethod(User user,HttpServletRequest request) throws Exception{
+	public String registerMethod(User user,Model model,HttpServletRequest request) throws Exception{
 		
 		System.out.println("用户登录:" + user.toString());
 		user.setPassword(new MD5Code().getMD5ofStr(user.getPassword()));
@@ -45,7 +46,9 @@ public class UserController {
 			System.out.println("sessionHost:"+session.getHost());
 			System.out.println("sessionTimeout:"+session.getTimeout());
 			session.setAttribute("info", "session的数据");
-			return "/success";
+			model.addAttribute("user", session.getAttribute("user"));
+			model.addAttribute("type",1);
+			return "/index";
 		}catch(AuthenticationException e){
 //			e.printStackTrace();//继续正常执行，无需打印异常
 			request.setAttribute("user", user);

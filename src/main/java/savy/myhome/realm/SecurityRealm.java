@@ -2,6 +2,7 @@ package savy.myhome.realm;
 
 import javax.annotation.Resource;
 
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -9,7 +10,9 @@ import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
+import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Component;
 
 import savy.myhome.service.UserService;
@@ -50,6 +53,11 @@ public class SecurityRealm extends AuthorizingRealm {
         String password = new String((char[]) token.getCredentials());
         // 通过数据库进行验证
           User user = userService.authentication(username, password);
+          //保存用户数据
+          Subject subject=SecurityUtils.getSubject();
+          Session session=subject.getSession();
+          session.setAttribute("user", user);
+          
           System.out.println("验证结束："+user);
         if (user == null) {
             throw new AuthenticationException("用户名或密码错误.");
