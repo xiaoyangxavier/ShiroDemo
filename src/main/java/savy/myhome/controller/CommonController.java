@@ -14,12 +14,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class CommonController {
     /**
      * 首页
-     * 
      * @param request
      * @return
      */
-    @RequestMapping("index")
+    @RequestMapping("/index")
     public String index(HttpServletRequest request) {
+    	System.out.println("进入index页面！");
+        return "/index";
+    }
+
+    /**
+     * 登录页
+     * @param request
+     * @return
+     */
+    @RequestMapping("/login")
+    public String login(HttpServletRequest request) {
+    	System.out.println("进入login页面！");
         return "/login";
     }
     
@@ -28,7 +39,18 @@ public class CommonController {
      */
     @RequestMapping("/404")
     public String error404() {
-        return "404";
+    	System.out.println("进入404找不到指定页面！");
+        return "/404";
+    }
+    
+    
+    /**
+     * 500页
+     */
+    @RequestMapping("/500")
+    public String error500() {
+    	System.out.println("进入500错误页面！");
+        return "/500";
     }
 
     

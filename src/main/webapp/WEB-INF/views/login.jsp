@@ -7,8 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="user/login" method="post">
-	userName:<input type="text" name="username" value="${user.userName }"/><br/>
+<form action="${pageContext.request.contextPath }/user/login" method="post">
+	userName:<input type="text" name="username" value="${user.username }"/><br/>
 	password:<input type="password" name="password" value="${user.password }"><br/>
 	<input type="submit" value="login"/><font color="red">${errorMsg }</font>
 </form>

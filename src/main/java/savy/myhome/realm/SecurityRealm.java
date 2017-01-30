@@ -50,12 +50,13 @@ public class SecurityRealm extends AuthorizingRealm {
         String password = new String((char[]) token.getCredentials());
         // 通过数据库进行验证
           User user = userService.authentication(username, password);
+          System.out.println("验证结束："+user);
         if (user == null) {
             throw new AuthenticationException("用户名或密码错误.");
         }
         SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(username, password, getName());
         return authenticationInfo;
     }
-
+ 
     
 }

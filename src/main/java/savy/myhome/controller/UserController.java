@@ -5,6 +5,7 @@ import java.security.MessageDigest;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
@@ -23,17 +24,17 @@ import sun.misc.BASE64Encoder;
  *
  */
 @Controller
-@RequestMapping(value="")
+@RequestMapping(value="/user")
 public class UserController {
  
 	/**
 	 * 用户注册，只能接收POST请求
 	 */
-	@RequestMapping(method=RequestMethod.POST,value="/user/login")
+	@RequestMapping(method=RequestMethod.POST,value="/login")
 	public String registerMethod(User user,HttpServletRequest request) throws Exception{
 		
+		System.out.println("用户登录:" + user.toString());
 		user.setPassword(new MD5Code().getMD5ofStr(user.getPassword()));
-		System.out.println("用户注册:" + user.toString());
 		
 		Subject subject=SecurityUtils.getSubject();
 		UsernamePasswordToken token=new UsernamePasswordToken(user.getUsername(), user.getPassword());
@@ -45,8 +46,8 @@ public class UserController {
 			System.out.println("sessionTimeout:"+session.getTimeout());
 			session.setAttribute("info", "session的数据");
 			return "/success";
-		}catch(Exception e){
-			e.printStackTrace();
+		}catch(AuthenticationException e){
+//			e.printStackTrace();//继续正常执行，无需打印异常
 			request.setAttribute("user", user);
 			request.setAttribute("errorMsg", "用户名或密码错误！");
 			return "/login";

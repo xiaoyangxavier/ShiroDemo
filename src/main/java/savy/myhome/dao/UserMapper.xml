@@ -26,7 +26,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		
 	select p.sign from user u 
 	LEFT JOIN role r on u.role_id=r.rid 
-	LEFT JOIN role_permission rp  on r.rid=rp.permission_id 
+	LEFT JOIN role_permission rp  on r.rid=rp.role_id 
 	LEFT JOIN permission p  on p.pid=rp.permission_id 
 	WHERE u.username=#{username}
 	
