@@ -7,11 +7,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<resultMap type="savy.myhome.vo.User" id="UserResult">
 		<result property="uid" column="uid"/>
 		<result property="username" column="username"/>
-		<result property="password" column="password	"/>
+		<result property="password" column="password"/>
 		<result property="state" column="state"/>
 		<result property="lastlogindate" column="lastlogindate"/>
 		<result property="createdate" column="createdate"/>
-		<result property="role_id" column="role_id"/>
+		<result property="roleId" column="role_id"/>
 	</resultMap>
 	
 	<select id="getByusername" parameterType="String" resultMap="UserResult">

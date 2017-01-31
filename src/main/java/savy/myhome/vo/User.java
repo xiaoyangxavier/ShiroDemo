@@ -10,7 +10,7 @@ public class User {
 	private Integer state;
 	private Date lastlogindate;
 	private Date createdate;
-	private Integer role_id;
+	private Integer roleId;
 	public Integer getUid() {
 		return uid;
 	}
@@ -47,17 +47,18 @@ public class User {
 	public void setCreatedate(Date createdate) {
 		this.createdate = createdate;
 	}
-	public Integer getRole_id() {
-		return role_id;
+	public Integer getRoleId() {
+		return roleId;
 	}
-	public void setRole_id(Integer role_id) {
-		this.role_id = role_id;
+	public void setRoleId(Integer roleId) {
+		this.roleId = roleId;
 	}
 	@Override
 	public String toString() {
 		return "User [uid=" + uid + ", username=" + username + ", password=" + password + ", state=" + state
-				+ ", lastlogindate=" + lastlogindate + ", createdate=" + createdate + ", role_id=" + role_id + "]";
+				+ ", lastlogindate=" + lastlogindate + ", createdate=" + createdate + ", roleId=" + roleId + "]";
 	}
+	 
 	
 	 
 

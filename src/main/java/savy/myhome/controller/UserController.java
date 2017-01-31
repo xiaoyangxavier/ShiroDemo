@@ -4,6 +4,7 @@ import java.security.MessageDigest;
 import java.util.Collection;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
@@ -31,8 +32,8 @@ public class UserController {
 	/**
 	 * 用户注册，只能接收POST请求
 	 */
-	@RequestMapping(method=RequestMethod.POST,value="/login")
-	public String registerMethod(User user,Model model,HttpServletRequest request) throws Exception{
+	@RequestMapping(value="/login", method = RequestMethod.POST)
+	public String loginMethod(User user,Model model,HttpServletRequest request) throws Exception{
 		
 		System.out.println("用户登录:" + user.toString());
 		user.setPassword(new MD5Code().getMD5ofStr(user.getPassword()));
@@ -47,7 +48,7 @@ public class UserController {
 			System.out.println("sessionTimeout:"+session.getTimeout());
 			session.setAttribute("info", "session的数据");
 			model.addAttribute("user", session.getAttribute("user"));
-			model.addAttribute("type",1);
+			 
 			return "/index";
 		}catch(AuthenticationException e){
 //			e.printStackTrace();//继续正常执行，无需打印异常
@@ -56,5 +57,19 @@ public class UserController {
 			return "/login";
 		}
 		
+	}
+	
+	/**
+	 * 用户注册，只能接收POST请求
+	 */
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String logoutMethod(HttpSession session){
+		
+		  session.removeAttribute("userInfo");
+	        // 登出操作
+	        Subject subject = SecurityUtils.getSubject();
+	        subject.logout();
+	        
+		return "/index";
 	}
 }

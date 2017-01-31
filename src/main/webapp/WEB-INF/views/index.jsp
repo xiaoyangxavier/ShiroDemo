@@ -6,25 +6,32 @@
 <html>
  
 <script type="text/javascript">
-function openpage(){
+function login(){
 window.location = "${pageContext.request.contextPath}/login";
 }
+
+function logout(){
+	window.location = "${pageContext.request.contextPath}/user/logout";
+	}
+	
 
 
 </script>
  
+
+ 
   <body> 
   
   <c:choose>
-<c:when test="${type==1}">
-管理员：${user.username}
+<c:when test="${user.roleId==1}">
+管理员：${user.username} 	&nbsp&nbsp&nbsp <button onclick="logout()">退出</button>
 </c:when>
-<c:when test="${type==1}">
-用户：${user.username}
+<c:when test="${user.roleId==2}">
+用户：${user.username} &nbsp&nbsp&nbsp <button onclick="logout()">退出</button>
 </c:when>
-<c:otherwise> <button onclick="openpage()">登录</button> </c:otherwise>
+<c:otherwise> <button onclick="login()">登录</button> </c:otherwise>
 </c:choose>
-  
+  	
   <br/>
   
   <H1>家庭综合管理系统<H1/>
