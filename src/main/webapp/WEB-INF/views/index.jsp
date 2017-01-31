@@ -46,7 +46,7 @@ function logout(){
   
  
 <shiro:hasPermission name="user:create">
-	<button onclick="#">新增数据</button><shiro:principal/>
+	<button onclick="#">新增用户</button><shiro:principal/>
 </shiro:hasPermission>
 
  
