@@ -51,9 +51,9 @@ public class UserController {
 			 
 			return "/index";
 		}catch(AuthenticationException e){
-//			e.printStackTrace();//继续正常执行，无需打印异常
+//			e.printStackTrace();//继续正常执行，无需打印异常	
 			request.setAttribute("user", user);
-			request.setAttribute("errorMsg", "用户名或密码错误！");
+			request.setAttribute("errorMsg", "用户名或密码错误！!!");
 			return "/login";
 		}
 		

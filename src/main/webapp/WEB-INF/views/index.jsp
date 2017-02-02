@@ -24,10 +24,10 @@ function logout(){
   
   <c:choose>
 <c:when test="${user.roleId==1}">
-管理员：${user.username} 	&nbsp&nbsp&nbsp <button onclick="logout()">退出</button>
+管理员：${user.realname} 	&nbsp&nbsp&nbsp <button onclick="logout()">退出</button>
 </c:when>
 <c:when test="${user.roleId==2}">
-用户：${user.username} &nbsp&nbsp&nbsp <button onclick="logout()">退出</button>
+用户：${user.realname} &nbsp&nbsp&nbsp <button onclick="logout()">退出</button>
 </c:when>
 <c:otherwise> <button onclick="login()">登录</button> </c:otherwise>
 </c:choose>

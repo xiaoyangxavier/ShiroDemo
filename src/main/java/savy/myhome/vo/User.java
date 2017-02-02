@@ -7,10 +7,13 @@ public class User {
 	private Integer uid;
 	private String username;
 	private String password;
+	private String realname;
 	private Integer state;
 	private Date lastlogindate;
 	private Date createdate;
 	private Integer roleId;
+	
+	
 	public Integer getUid() {
 		return uid;
 	}
@@ -28,6 +31,12 @@ public class User {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public String getRealname() {
+		return realname;
+	}
+	public void setRealname(String realname) {
+		this.realname = realname;
 	}
 	public Integer getState() {
 		return state;
@@ -55,9 +64,11 @@ public class User {
 	}
 	@Override
 	public String toString() {
-		return "User [uid=" + uid + ", username=" + username + ", password=" + password + ", state=" + state
-				+ ", lastlogindate=" + lastlogindate + ", createdate=" + createdate + ", roleId=" + roleId + "]";
+		return "User [uid=" + uid + ", username=" + username + ", password=" + password + ", realname=" + realname
+				+ ", state=" + state + ", lastlogindate=" + lastlogindate + ", createdate=" + createdate + ", roleId="
+				+ roleId + "]";
 	}
+ 
 	 
 	
 	 
