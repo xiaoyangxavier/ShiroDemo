@@ -59,10 +59,10 @@
         
     </settings>
 
-    <typeAliases>
+   <!-- <typeAliases>
         <package name="savy.myhome.vo"/>
          
-    </typeAliases>
+    </typeAliases>-->
 
     <!--  <plugins>
         <plugin interceptor="com.eliteams.quick4j.core.feature.orm.mybatis.PaginationResultSetHandlerInterceptor"/>

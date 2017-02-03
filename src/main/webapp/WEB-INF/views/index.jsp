@@ -13,7 +13,9 @@ window.location = "${pageContext.request.contextPath}/login";
 function logout(){
 	window.location = "${pageContext.request.contextPath}/user/logout";
 	}
-	
+function goback(){
+	window.location = "${pageContext.request.contextPath}/user/logout";
+	}
 
 
 </script>
@@ -24,7 +26,9 @@ function logout(){
   
   <c:choose>
 <c:when test="${user.roleId==1}">
-管理员：${user.realname} 	&nbsp&nbsp&nbsp <button onclick="logout()">退出</button>
+管理员：${user.realname} 	&nbsp&nbsp&nbsp 
+<button onclick="goback()">后台</button>
+<button onclick="logout()">退出</button>
 </c:when>
 <c:when test="${user.roleId==2}">
 用户：${user.realname} &nbsp&nbsp&nbsp <button onclick="logout()">退出</button>

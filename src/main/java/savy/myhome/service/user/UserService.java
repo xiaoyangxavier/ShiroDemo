@@ -1,39 +1,36 @@
-package savy.myhome.dao;
+package savy.myhome.service.user;
 
 import java.util.Set;
 
-import org.apache.ibatis.annotations.Param;
+import savy.myhome.vo.user.User;
 
-import savy.myhome.vo.User;
-
-public interface UserDao {
-
+public interface UserService {
 	/**
 	 * 通过用户名查询用户
-	 * @param userName
+	 * @param username
 	 * @return
 	 */
 	public User getByUsername(String username);
 	
 	/**
 	 * 通过用户名查询角色信息
-	 * @param userName
+	 * @param username
 	 * @return
 	 */
 	public Set<String> getRoles(String username);
 	
 	/**
 	 * 通过用户名查询权限信息
-	 * @param userName
+	 * @param username
 	 * @return
 	 */
 	public Set<String> getPermissions(String username);
 	
 	/**
-	 * 根据用户名和密码进行登录
+	 * 根据用户名密码验证登录
 	 * @param username
 	 * @param password
 	 * @return
 	 */
-	public User login(@Param("username") String username, @Param("password") String password);
+	public User authentication(String username, String password);
 }

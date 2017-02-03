@@ -15,8 +15,8 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Component;
 
-import savy.myhome.service.UserService;
-import savy.myhome.vo.User;
+import savy.myhome.service.user.UserService;
+import savy.myhome.vo.user.User;
 
 /**
  * 用户身份验证,授权 Realm 组件
