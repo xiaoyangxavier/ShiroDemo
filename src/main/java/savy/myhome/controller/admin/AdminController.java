@@ -10,7 +10,7 @@ public class AdminController {
 	@RequestMapping("")
 	public String goAdmin(){
 		System.out.println("进入后台");
-		return "/admin/admin";
+		return "redirect:/outlay/list";
 	}
 	
 	
