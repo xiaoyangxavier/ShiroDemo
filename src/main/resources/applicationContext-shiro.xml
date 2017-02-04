@@ -27,7 +27,10 @@
 	        <value>  
 	        	 <!-- 资源文件无需认证 -->
 	        	 /assets/** = anon
-	        	  
+	        	  /js/** = anon
+	        	  /css/** = anon
+	        	  /images/** = anon
+	        	  /themes/** = anon
 	        	  <!-- 首页、登录页无需认证 -->
 	        	  / = anon
 	        	  /index = anon
@@ -35,8 +38,8 @@
 	        	  /user/login = anon
 	        	  /api/** = anon
 	        	   /test/** = anon
-	        	  <!-- 其他需要认证 -->
-	             /** = authc
+	        	  <!-- 其他需要认证 authc-->
+	             /** = anon
 				 
 				 
 	        </value>  
