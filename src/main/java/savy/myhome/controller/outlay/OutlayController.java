@@ -31,4 +31,10 @@ public class OutlayController {
 		return "/outlay/outlay_list";
 	}
 	
+	@RequestMapping("/addpre")
+	public String goAdmin(Outlay outlay,HttpServletRequest request,
+			HttpServletResponse response){
+		System.out.println("新增支出记录！");
+		return "/outlay/outlay_add";
+	}
 }

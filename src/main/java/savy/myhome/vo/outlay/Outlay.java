@@ -1,13 +1,16 @@
 package savy.myhome.vo.outlay;
 
+import java.io.File;
 import java.util.Date;
 
 public class Outlay {
 
 	private Integer id;
-	private Integer type;
+	private Integer typeId;
 	private String typeName;
 	private Double amount;
+	private String pictureUrl;
+	private File picture;//冗余
 	private Integer userId;
 	private String userRealName;
 	private Date outlayDate;
@@ -21,11 +24,11 @@ public class Outlay {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public Integer getType() {
-		return type;
+	public Integer getTypeId() {
+		return typeId;
 	}
-	public void setType(Integer type) {
-		this.type = type;
+	public void setTypeId(Integer typeId) {
+		this.typeId = typeId;
 	}
 	public String getTypeName() {
 		return typeName;
@@ -38,6 +41,18 @@ public class Outlay {
 	}
 	public void setAmount(Double amount) {
 		this.amount = amount;
+	}
+	public String getPictureUrl() {
+		return pictureUrl;
+	}
+	public void setPictureUrl(String pictureUrl) {
+		this.pictureUrl = pictureUrl;
+	}
+	public File getPicture() {
+		return picture;
+	}
+	public void setPicture(File picture) {
+		this.picture = picture;
 	}
 	public Integer getUserId() {
 		return userId;
@@ -77,10 +92,13 @@ public class Outlay {
 	}
 	@Override
 	public String toString() {
-		return "Outlay [id=" + id + ", type=" + type + ", typeName=" + typeName + ", amount=" + amount + ", userId="
-				+ userId + ", userRealName=" + userRealName + ", outlayDate=" + outlayDate + ", description="
-				+ description + ", operationDate=" + operationDate + ", operator=" + operator + "]";
+		return "Outlay [id=" + id + ", typeId=" + typeId + ", typeName=" + typeName + ", amount=" + amount
+				+ ", pictureUrl=" + pictureUrl + ", picture=" + picture + ", userId=" + userId + ", userRealName="
+				+ userRealName + ", outlayDate=" + outlayDate + ", description=" + description + ", operationDate="
+				+ operationDate + ", operator=" + operator + "]";
 	}
+	
+	 
 	
 	
 }

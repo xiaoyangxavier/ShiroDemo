@@ -1,8 +1,11 @@
  <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  
+ 
 <head>
  
+  
+  
 <style>
 #div_left {
 width: 250px;
@@ -70,8 +73,8 @@ div_leftmenu_html += ' </ul>';
 div_leftmenu_html += '</div>';
 div_leftmenu_html += '<div title="支出管理">';
 div_leftmenu_html += ' <ul>';
-div_leftmenu_html += ' <li><a href="#">支出列表</a></li>';
-div_leftmenu_html += ' <li><a href="#">新增支出</a></li>';
+div_leftmenu_html += ' <li><a href="${pageContext.request.contextPath}/outlay/list">支出列表</a></li>';
+div_leftmenu_html += ' <li><a href="${pageContext.request.contextPath}/outlay/addpre">新增支出</a></li>';
 div_leftmenu_html += ' <li><a href="#">支出统计</a></li>';
 div_leftmenu_html += ' </ul>';
 div_leftmenu_html += '</div>';

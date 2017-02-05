@@ -1,32 +1,31 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-%>
-
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <html>
-  <head>
-    <base href="<%=basePath%>">
-    
-    <title>My JSP 'index.jsp' starting page</title>
-	<meta http-equiv="pragma" content="no-cache">
-	<meta http-equiv="cache-control" content="no-cache">
-	<meta http-equiv="expires" content="0">    
-	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-	<meta http-equiv="description" content="This is my page">
-	<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
-	 
-    
-  </head>
-  
-  <body>
-    
-	
-		<h1>  欢迎！！！</h1>
-		
-	 
-  </body>
+<head>
+	<meta charset="UTF-8">
+	<title>Basic FileBox - jQuery EasyUI Demo</title>
+	<link rel="stylesheet" type="text/css" href="/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="/themes/icon.css">
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery.easyui.min.js"></script>
+</head>
+<body>
+	<h2>Basic FileBox</h2>
+	<p>The filebox component represents a file field of the forms.</p>
+	<div style="margin:20px 0;"></div>
+	<div class="easyui-panel" title="Upload File" style="width:100%;max-width:400px;padding:30px 60px;">
+		<div style="margin-bottom:20px">
+			<input class="easyui-textbox" label="Name:" labelPosition="top" style="width:100%">
+		</div>
+		<div style="margin-bottom:20px">
+			<input class="easyui-filebox" label="File1:" labelPosition="top" data-options="prompt:'Choose a file...'" style="width:100%">
+		</div>
+		<div style="margin-bottom:40px">
+			<input class="easyui-filebox" label="File2:" labelPosition="top" data-options="prompt:'Choose another file...'" style="width:100%">
+		</div>
+		<div>
+			<a href="#" class="easyui-linkbutton" style="width:100%">Upload</a>
+		</div>
+	</div>
+</body>
 </html>

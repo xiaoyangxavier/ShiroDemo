@@ -9,6 +9,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="type" column="type"/>
 		<result property="typeName" column="type_name"/>
 		<result property="amount" column="amount"/>
+		<result property="pictureUrl" column="picture_url"/>
 		<result property="userId" column="user_id"/>
 		<result property="userRealName" column="user_real_name"/>
 		<result property="outlayDate" column="outlay_date"/>
