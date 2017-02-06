@@ -21,7 +21,7 @@
 <div style="margin:20px 0;"></div>
 	<center>
 	<table class="easyui-datagrid" title="数据列表" style="width:700px;height:250px;align=center"
-			data-options="singleSelect:true,collapsible:true,url:'datagrid_data1.json',method:'get'">
+			 >
 		<thead>
 			<tr>
 				<th data-options="field:'itemid',width:80,align:'center'">类型</th>

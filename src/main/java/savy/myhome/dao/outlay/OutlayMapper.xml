@@ -18,8 +18,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="operator" column="operator"/>
 	</resultMap>
 	
+	<resultMap type="savy.myhome.vo.outlay.OutlayTypeOne" id="outlayTypeOneResult">
+		<result property="id" column="outlay_type_one_id"/>
+		<result property="title" column="title"/>
+		</resultMap>
+		
+		<resultMap type="savy.myhome.vo.outlay.OutlayTypeTwo" id="outlayTypeTwoResult">
+		<result property="id" column="outlay_type_two_id"/>
+		<result property="title" column="title"/>
+		<result property="outlayTypeOneId" column="outlay_type_one_id"/>
+		</resultMap>
+	
 	<select id="getOutlayList" parameterType="String" resultMap="outlayResult">
 		select * from outlay_info where 1=1
+	</select>
+	
+	<select id="getOutlayTypeOneList"  resultMap="outlayTypeOneResult">
+		select * from outlay_type_one  
+	</select>
+	
+	<select id="getOutlayTypeTwoList" parameterType="Integer" resultMap="outlayTypeTwoResult">
+		select * from outlay_type_two where outlay_type_one_id=#{id}
 	</select>
  	
 </mapper> 
