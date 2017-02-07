@@ -105,10 +105,14 @@ var title = $("#plus").find("option:selected").text();
 							<span class="STYLE19"> <label>
 									<input type="submit" name="Submit" value="增加">
 									&nbsp;&nbsp;
-									<input type="reset" name="Submit2" value="重置">
+									<input type="reset" name="reset" value="重置">
 								</label> </span>
 						</td>
 					</tr>
+					<tr>
+					<td><font color="#FF0000"><strong><span
+											id="left_char">${info}</span> </strong> </font></td>
+				</tr>
 			</table>
 
 		</form>

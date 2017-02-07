@@ -10,7 +10,6 @@ public class Outlay {
 	private String typeName;
 	private Double amount;
 	private String pictureUrl;
-	private File picture;//冗余
 	private Integer userId;
 	private String userRealName;
 	private Date outlayDate;
@@ -48,12 +47,7 @@ public class Outlay {
 	public void setPictureUrl(String pictureUrl) {
 		this.pictureUrl = pictureUrl;
 	}
-	public File getPicture() {
-		return picture;
-	}
-	public void setPicture(File picture) {
-		this.picture = picture;
-	}
+	 
 	public Integer getUserId() {
 		return userId;
 	}
@@ -93,7 +87,7 @@ public class Outlay {
 	@Override
 	public String toString() {
 		return "Outlay [id=" + id + ", typeId=" + typeId + ", typeName=" + typeName + ", amount=" + amount
-				+ ", pictureUrl=" + pictureUrl + ", picture=" + picture + ", userId=" + userId + ", userRealName="
+				+ ", pictureUrl=" + pictureUrl + ", userId=" + userId + ", userRealName="
 				+ userRealName + ", outlayDate=" + outlayDate + ", description=" + description + ", operationDate="
 				+ operationDate + ", operator=" + operator + "]";
 	}

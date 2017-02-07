@@ -37,4 +37,10 @@ public class OutlayServiceImpl implements OutlayService {
 		return myList;
 	}
 
+	// 新增支出记录
+	public boolean insertOutlay(Outlay outlay) {
+		boolean flag = false;
+		flag = outlayDao.insertOutlay(outlay);
+		return flag;
+	}
 }

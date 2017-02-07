@@ -5,40 +5,52 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="savy.myhome.dao.outlay.OutlayDao">
 
 	<resultMap type="savy.myhome.vo.outlay.Outlay" id="outlayResult">
-		<result property="id" column="outlay_info_id"/>
-		<result property="type" column="type"/>
-		<result property="typeName" column="type_name"/>
-		<result property="amount" column="amount"/>
-		<result property="pictureUrl" column="picture_url"/>
-		<result property="userId" column="user_id"/>
-		<result property="userRealName" column="user_real_name"/>
-		<result property="outlayDate" column="outlay_date"/>
-		<result property="description" column="description"/>
-		<result property="operationDate" column="operation_date"/>
-		<result property="operator" column="operator"/>
+		<result property="id" column="outlay_info_id" />
+		<result property="typeId" column="type_id" />
+		<result property="typeName" column="type_name" />
+		<result property="amount" column="amount" />
+		<result property="pictureUrl" column="picture_url" />
+		<result property="userId" column="user_id" />
+		<result property="userRealName" column="user_real_name" />
+		<result property="outlayDate" column="outlay_date" />
+		<result property="description" column="description" />
+		<result property="operationDate" column="operation_date" />
+		<result property="operator" column="operator" />
 	</resultMap>
-	
+
 	<resultMap type="savy.myhome.vo.outlay.OutlayTypeOne" id="outlayTypeOneResult">
-		<result property="id" column="outlay_type_one_id"/>
-		<result property="title" column="title"/>
-		</resultMap>
-		
-		<resultMap type="savy.myhome.vo.outlay.OutlayTypeTwo" id="outlayTypeTwoResult">
-		<result property="id" column="outlay_type_two_id"/>
-		<result property="title" column="title"/>
-		<result property="outlayTypeOneId" column="outlay_type_one_id"/>
-		</resultMap>
-	
+		<result property="id" column="outlay_type_one_id" />
+		<result property="title" column="title" />
+	</resultMap>
+
+	<resultMap type="savy.myhome.vo.outlay.OutlayTypeTwo" id="outlayTypeTwoResult">
+		<result property="id" column="outlay_type_two_id" />
+		<result property="title" column="title" />
+		<result property="outlayTypeOneId" column="outlay_type_one_id" />
+	</resultMap>
+
 	<select id="getOutlayList" parameterType="String" resultMap="outlayResult">
 		select * from outlay_info where 1=1
 	</select>
-	
-	<select id="getOutlayTypeOneList"  resultMap="outlayTypeOneResult">
-		select * from outlay_type_one  
+
+	<select id="getOutlayTypeOneList" resultMap="outlayTypeOneResult">
+		select * from
+		outlay_type_one
 	</select>
-	
-	<select id="getOutlayTypeTwoList" parameterType="Integer" resultMap="outlayTypeTwoResult">
+
+	<select id="getOutlayTypeTwoList" parameterType="Integer"
+		resultMap="outlayTypeTwoResult">
 		select * from outlay_type_two where outlay_type_one_id=#{id}
 	</select>
- 	
+
+	<!-- 增加员工 -->
+	<insert id="insertOutlay" parameterType="savy.myhome.vo.outlay.Outlay">
+		insert into outlay_info
+		(type_id,type_name,amount,picture_url,user_id,user_real_name,outlay_date,description,operation_date,operator)
+		values
+		(#{typeId},#{typeName},#{amount},#{pictureUrl},#{userId},#{userRealName},#{outlayDate},#{description},#{operationDate},#{operator})
+
+	</insert>
+
+
 </mapper> 
