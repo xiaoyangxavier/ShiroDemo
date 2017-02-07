@@ -1,11 +1,9 @@
 package savy.myhome.controller.outlay;
 
-import java.io.File;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -26,6 +24,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributesModelMap;
 
 import savy.myhome.service.outlay.OutlayService;
+import savy.myhome.service.user.UserService;
+import savy.myhome.util.MyUtil;
 import savy.myhome.vo.outlay.Outlay;
 import savy.myhome.vo.outlay.OutlayTypeOne;
 import savy.myhome.vo.outlay.OutlayTypeTwo;
@@ -37,6 +37,9 @@ public class OutlayController {
 
 	@Resource
 	private OutlayService outlayService;
+	
+	@Resource
+	private UserService userService;
 
 	@RequestMapping("/list")
 	public String goAdmin(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response) {
@@ -52,8 +55,10 @@ public class OutlayController {
 			HttpServletResponse response) {
 		System.out.println("跳转到新增页面！");
 
-		List<OutlayTypeOne> myList = outlayService.getOutlayTypeOneList();
-		model.addAttribute("allType", myList);
+		List<OutlayTypeOne> outlayTypeList = outlayService.getOutlayTypeOneList();
+		List<User> userList = userService.getUserAll();
+		model.addAttribute("allType", outlayTypeList);
+		model.addAttribute("userList", userList);
 		return "/outlay/outlay_add";
 	}
 
@@ -77,31 +82,13 @@ public class OutlayController {
 		if (file.getSize() > 1024 * 1024) {
 			info = "图片大小不能大于 1M";
 		} else {
-			String path = request.getSession().getServletContext().getRealPath("upload");
-			UUID uuid = UUID.randomUUID();
-			// String fileName = file.getOriginalFilename();
-			// String fileName = new Date().getTime()+".jpg";
-			String fileName = uuid.toString();
-			System.out.println("图片保存地址为：" + path);
-			File targetFile = new File(path, fileName);
-			if (!targetFile.getParentFile().exists()) { // 父路径不存在
-				targetFile.getParentFile().mkdirs(); // 创建目录
-			}
-			if (!targetFile.exists()) { // 文件不存在
-				targetFile.mkdirs(); // 创建文件
-			}
-
-			// 保存
-			try {
-				file.transferTo(targetFile);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			String fileUrl = request.getContextPath() + "/upload/" + fileName;
-			System.out.println("图片地址为：" + fileUrl);
-
+			 MyUtil myUtil = new MyUtil();
+			String fileUrl = myUtil.savePicture(file, request);
+			if(fileUrl!=null){
 			outlay.setPictureUrl(fileUrl);
-
+			}else{
+				info = "图片保存失败，请重试！";
+			}
 			//插入其他参数
 			Subject subject=SecurityUtils.getSubject();
 			Session session=subject.getSession();
@@ -113,11 +100,6 @@ public class OutlayController {
 			outlay.setOperator(user.getRealname());
 			}
 			
-			//测试
-			outlay.setUserId(1);
-			outlay.setUserRealName("测试");
-			outlay.setOperator("测试");
-			outlay.setOutlayDate(new Date());
 			boolean flag = false;
 			flag = outlayService.insertOutlay(outlay);
 			if (flag) {

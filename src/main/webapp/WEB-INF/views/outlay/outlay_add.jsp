@@ -11,8 +11,21 @@
 
 
 <script>
+//选择用户,js方式获取下拉列表的文本
+function changeUser(obj){
+	for (var i=0;i<obj.length;i++)
+	{
+	if (obj.options[i].selected)
+	{
+	var title =	obj.options[i].text;
+	//alert(title);
+		document.getElementById('userRealName').value=title;
+	}
+	
+}
+}
 
-
+//选择一级下拉列表，更改二级列表数据
 function showplus(id){
         	if (id != 0) {
     			//使用JQuery传递请求
@@ -30,7 +43,7 @@ function showplus(id){
     		} 
         }
  
-//可以直接取得返回值
+//二级下拉列表，ajax返回数据
 function showPlusCallback(obj) {
 	//alert(obj.data[0].name);
 	typeData = obj;
@@ -50,11 +63,11 @@ function showPlusCallback(obj) {
 	}
 }
 
+//jquery方式获取下拉列表的文本
 function changePlus(){  
 var title = $("#plus").find("option:selected").text();
 	//alert(title);
 	$("#typeName").attr("value",title);
-	
 }
 
 </script>
@@ -68,6 +81,17 @@ var title = $("#plus").find("option:selected").text();
 
 		<form id="ff" action="${pageContext.request.contextPath}/outlay/addOutlay" method="post" enctype="multipart/form-data">
 			<table cellpadding="5">
+			<tr>
+					<td>姓名:</td>
+					<td><select id="userId" name="userId"
+						style="width: 200" onchange="changeUser(this);">
+							<option value="0" selected>选择姓名</option>
+							<c:forEach var="o" items="${userList}">
+								<option value="${o.uid}">${o.realname}</option>
+							</c:forEach>
+					</select></td>
+					<td><input type="hidden" id="userRealName" name="userRealName" value="${userList[0].realname}"/></td>
+				</tr>	
 				<tr>
 					<td>类型:</td>
 					<td><select id="type" name="type"
@@ -82,12 +106,16 @@ var title = $("#plus").find("option:selected").text();
 							<option value="0">选择类别</option>
 							 
 					</select></td>
-					<input type="hidden" id="typeName" name="typeName" value="未知"/>
+					<td><input type="hidden" id="typeName" name="typeName" value="未知"/></td>
 				</tr>
 				<tr>
 					<td>金额:</td>
 					<td><input class="easyui-textbox" type="text" name="amount"
 						data-options="required:true,validType:'intOrFloat'"></input></td>
+				</tr>
+				<tr>
+					<td>时间:</td>
+					<td><input id="outlayDate" name="outlayDate" type="text" class="easyui-datebox" data-options="required:true"/></td>
 				</tr>
 				<tr>
 					<td>图片:</td>

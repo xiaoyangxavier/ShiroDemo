@@ -1,5 +1,6 @@
 package savy.myhome.service.impl.user;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.annotation.Resource;
@@ -36,4 +37,9 @@ public class UserServiceImpl implements UserService {
 		return userDao.login(username,password);
 	}
 
+	//查询所有的用户
+		public List<User> getUserAll(){
+			List<User> myList = userDao.getUserAll();
+			return myList;
+		}
 }

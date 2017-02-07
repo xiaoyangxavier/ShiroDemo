@@ -1,5 +1,6 @@
 package savy.myhome.dao.user;
 
+import java.util.List;
 import java.util.Set;
 
 import org.apache.ibatis.annotations.Param;
@@ -14,6 +15,9 @@ public interface UserDao {
 	 * @return
 	 */
 	public User getByUsername(String username);
+	
+	//查询所有的用户
+	public List<User> getUserAll();
 	
 	/**
 	 * 通过用户名查询角色信息

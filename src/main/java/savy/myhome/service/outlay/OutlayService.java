@@ -15,4 +15,5 @@ public List<OutlayTypeOne> getOutlayTypeOneList();//一级支出类别列表
 	public List<OutlayTypeTwo> getOutlayTypeTwoList(Integer id);//二级支出类别列表
 	
 	public boolean insertOutlay(Outlay outlay);//新增支出记录
+	
 }

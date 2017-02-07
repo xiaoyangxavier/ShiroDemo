@@ -1,5 +1,6 @@
 package savy.myhome.service.user;
 
+import java.util.List;
 import java.util.Set;
 
 import savy.myhome.vo.user.User;
@@ -33,4 +34,7 @@ public interface UserService {
 	 * @return
 	 */
 	public User authentication(String username, String password);
+	
+	//查询所有的用户
+		public List<User> getUserAll();
 }
