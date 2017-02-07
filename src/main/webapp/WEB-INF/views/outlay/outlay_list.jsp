@@ -40,7 +40,7 @@
 			<td>${o.typeName}</td>
 				<td>${o.amount}</td>
 				<td>${o.userRealName}</td>
-				<td><fmt:formatDate value="${o.outlayDate}" pattern="yyyy-MM-dd HH:mm" /></td>
+				<td><fmt:formatDate value="${o.outlayDate}" pattern="yyyy-MM-dd" /></td>
 				<td>${o.description}</td>
 				<td><fmt:formatDate value="${o.operationDate}" pattern="yyyy-MM-dd HH:mm" /></td	>
 			</tr>
