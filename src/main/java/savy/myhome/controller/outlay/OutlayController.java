@@ -42,12 +42,29 @@ public class OutlayController {
 	private UserService userService;
 
 	@RequestMapping("/list")
-	public String goAdmin(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response) {
-		System.out.println("进入支出列表！");
-
-		List<Outlay> myList = outlayService.getOutlayList();
-		modelMap.addAttribute("outlayList", myList);
+	public String goAdmin(Integer pageNumber,Integer pageSize,ModelMap modelMap, HttpServletRequest request, HttpServletResponse response) {
+		System.out.println("进入支出列表！"+pageNumber+"、"+pageSize);
+	 
+		if(pageNumber==null || pageNumber==0){
+			pageNumber = 1;
+		}
+		if(pageSize==null || pageSize==0){
+			pageSize = 10;
+		}
+		Map<String,Object> myMap = outlayService.getOutlayAll(pageNumber,pageSize,null,null,null);
+		modelMap.addAttribute("allData", myMap.get("allData"));
+		modelMap.addAttribute("count", myMap.get("count"));
+		modelMap.addAttribute("pageNumber", pageNumber);
+		modelMap.addAttribute("pageSize", pageSize);
 		return "/outlay/outlay_list";
+	}
+	
+	@RequestMapping("/listRefresh")
+	@ResponseBody
+	public Map<String, Object> listRefresh(Integer pageNumber,Integer pageSize) {
+		System.out.println("刷新列表！");
+		Map<String,Object> myMap = outlayService.getOutlayAll(pageNumber,pageSize,null,null,null);
+		return myMap;
 	}
 
 	@RequestMapping("/addpre")
@@ -67,10 +84,10 @@ public class OutlayController {
 	public Map<String, Object> getTypeTwo(Integer id) {
 		System.out.println("获取二级类别列表！");
 		List<OutlayTypeTwo> myList = outlayService.getOutlayTypeTwoList(id);
-		Map<String, Object> modelMap = new HashMap<String, Object>(3);
-		modelMap.put("data", myList);
-		modelMap.put("success", "true");
-		return modelMap;
+		Map<String, Object> myMap = new HashMap<String, Object>(3);
+		myMap.put("data", myList);
+		myMap.put("success", "true");
+		return myMap;
 	}
 
 	@RequestMapping(value = "/addOutlay", method = RequestMethod.POST)

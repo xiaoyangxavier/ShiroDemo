@@ -34,7 +34,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 
-<select id="login" parameterType="String" resultMap="UserResult">
+<select id="login"   resultMap="UserResult">
 		select * from user_info where username=#{username} and password=#{password}
 	</select>	
 	

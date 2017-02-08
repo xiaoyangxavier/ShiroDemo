@@ -1,6 +1,8 @@
 package savy.myhome.service.impl.outlay;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -18,11 +20,15 @@ public class OutlayServiceImpl implements OutlayService {
 	@Resource
 	private OutlayDao outlayDao;
 
-	public List<Outlay> getOutlayList() {
-
-		List<Outlay> myList = outlayDao.getOutlayList();
-
-		return myList;
+	//支出列表
+	public Map<String,Object> getOutlayAll(Integer currentPage, Integer pageSize, String userId, String column,String keyWord) {
+		Integer offset = (currentPage-1)*pageSize;
+		List<Outlay> myList = outlayDao.getOutlayAll(offset,pageSize,userId,column,keyWord);
+		Integer count = outlayDao.getOutlayCount(column,keyWord);
+		Map<String,Object> map = new HashMap<String, Object>() ;
+			map.put("allData", myList) ;
+			map.put("count", count) ;
+		return map;
 	}
 
 	// 一级支出类别列表

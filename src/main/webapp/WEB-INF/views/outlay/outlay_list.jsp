@@ -9,6 +9,38 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
  <jsp:include page="../common/common_head.jsp"/>
  
+ <script>
+ 
+ $(document).ready(function(){ 
+
+	 $('#pagination').pagination({
+		 onSelectPage:function(pageNumber, pageSize){
+		 //$(this).pagination('loading');
+		 //alert('pageNumber:'+pageNumber+',pageSize:'+pageSize);
+		 //getData(pageNumber, pageSize);
+		 window.location.href="${pageContext.request.contextPath}/outlay/list?pageNumber="+pageNumber+"&pageSize="+pageSize;
+		 //$(this).pagination('loaded');
+		 }
+		 });
+	 }); 
+ 
+
+ //查询数据
+ function getData(pageNumber, pageSize) {
+     $.post("${pageContext.request.contextPath}/outlay/listRefresh", {
+    	 pageNumber : pageNumber,
+    	 pageSize:pageSize
+		}, showPlusCallback, "json");
+ }
+ 
+//ajax返回数据
+ function showPlusCallback(obj) {
+	
+	alert( JSON.stringify(obj["allData"]));
+	
+	 $("#datagrid").datagrid('loadData', obj["allData"]);
+ }
+ </script>
  
  
 </head>
@@ -20,7 +52,7 @@
 <h1 style="text-align:center">后台管理</h1>
 <div style="margin:20px 0;"></div>
 	<center>
-	<table class="easyui-datagrid" title="数据列表" style="width:700px;height:250px;align=center"
+	<table id="datagrid" class="easyui-datagrid" title="数据列表" style="width:700px;height:250px;align=center"
 			 >
 		<thead>
 			<tr>
@@ -33,7 +65,7 @@
 			</tr>
 			</thead>
 			 <tbody>  
-			<c:forEach var="o" items="${outlayList}">
+			<c:forEach var="o" items="${allData}">
 			
 			
 			<tr>
@@ -47,7 +79,7 @@
 			</c:forEach>
 		</tbody>
 	</table>
-		<div class="easyui-pagination" style="width:700px" data-options="total:114" ></div>
+		<div id="pagination" class="easyui-pagination" style="width:700px" data-options="total:${count},pageNumber:${pageNumber},pageSize:${pageSize}" onSelectPage:"selectPage(pageNumber,pageSize);"></div>
 </center>
 </div>
 </body>
